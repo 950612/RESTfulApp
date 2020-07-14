@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.Objects;
 
 /**
@@ -27,7 +27,7 @@ public class FilesValidationImpl implements FilesValidation {
         }
 
         return new BufferedReader(
-                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), StandardCharsets.UTF_8))
+                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), Charset.defaultCharset()))
                 .lines()
                 .limit(1L)
                 .anyMatch(s -> s.equals("PRIMARY_KEY,NAME,DESCRIPTION,UPDATED_TIMESTAMP"));
@@ -47,7 +47,7 @@ public class FilesValidationImpl implements FilesValidation {
         }
 
         return new BufferedReader(
-                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), StandardCharsets.UTF_8))
+                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), Charset.defaultCharset()))
                 .lines()
                 .skip(1L)
                 .anyMatch(l -> l.startsWith(","));
@@ -67,7 +67,7 @@ public class FilesValidationImpl implements FilesValidation {
         }
 
         return new BufferedReader(
-                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), StandardCharsets.UTF_8))
+                new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), Charset.defaultCharset()))
                 .lines()
                 .skip(1L)
                 .map(l -> l.split(","))
