@@ -30,7 +30,7 @@ public class FilesValidationImpl implements FilesValidation {
                 new InputStreamReader(Objects.requireNonNull(reader, "InputStream object is null"), Charset.defaultCharset()))
                 .lines()
                 .limit(1L)
-                .anyMatch(s -> s.equals("PRIMARY_KEY,NAME,DESCRIPTION,UPDATED_TIMESTAMP"));
+                .anyMatch(s -> s.contains("PRIMARY_KEY,NAME,DESCRIPTION,UPDATED_TIMESTAMP"));
     }
 
     /**
